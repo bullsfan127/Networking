@@ -4,3 +4,4 @@ C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x8
 C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Networking.pdb
 C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\obj\x86\Debug\Networking.exe
 C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\obj\x86\Debug\Networking.pdb
+C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Arial.xnb
