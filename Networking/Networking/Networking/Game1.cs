@@ -18,11 +18,12 @@ namespace Networking
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        public Link link;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+           
         }
 
         /// <summary>
@@ -69,7 +70,10 @@ namespace Networking
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
+              link = new Link(graphics.GraphicsDevice, 10, 15);
+            link.startPosition = new Vector2(100, 100);
+            link.endPosition = new Vector2(200, 200);
+           
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -84,7 +88,7 @@ namespace Networking
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            link.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
         }
     }

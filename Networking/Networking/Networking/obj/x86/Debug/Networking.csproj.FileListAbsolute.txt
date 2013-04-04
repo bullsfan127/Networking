@@ -1,0 +1,6 @@
+C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Networking.exe
+C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Networking.pdb
+C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\obj\x86\Debug\Networking.exe
+C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\obj\x86\Debug\Networking.pdb
