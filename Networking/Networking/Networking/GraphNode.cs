@@ -40,10 +40,16 @@ namespace Networking
             get { throw new NotImplementedException(); }
         }
 #endregion 
+        /// <summary>
+        /// the recieved queue
+        /// </summary>
         public Queue<Packet> recieved = new Queue<Packet>();
+        /// <summary>
+        /// outgoing packet queue
+        /// </summary>
         public Queue<Packet> outgoing = new Queue<Packet>();
 
-        public Texture serverPicture;
+        public Texture2D serverPicture;
         public Vector2 picturePosition;
 
         List<Link> edges = new List<Link>();

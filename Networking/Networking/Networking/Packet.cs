@@ -44,6 +44,9 @@ namespace Networking
        public event EventHandler<EventArgs> VisibleChanged;
        #endregion
 
+       /// <summary>
+       /// What the packet contains
+       /// </summary>
        int data;
 
        public int Data
@@ -52,10 +55,22 @@ namespace Networking
            set { data = value; }
        }
 
+       /// <summary>
+       /// Start ip
+       /// </summary>
        public int[] start = new int[3];
+       /// <summary>
+       /// end ip
+       /// </summary>
        public int[] destination = new int[3];
 
+       /// <summary>
+       /// Image that will move along the link
+       /// </summary>
        public Texture2D packetPartical;
+       /// <summary>
+       /// position that the packet image will be rendered
+       /// </summary>
        public Vector2 position;
 
        public Packet(int data, int[] ipDestAddress, int[] ipSrcAddress)
