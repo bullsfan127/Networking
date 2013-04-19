@@ -50,10 +50,23 @@ namespace Networking
         public Queue<Packet> outgoing = new Queue<Packet>();
 
         public Texture2D serverPicture;
-        public Vector2 picturePosition;
+        public Rectangle picturePosition;
 
-        List<Link> edges = new List<Link>();
+        List<Line> edges = new List<Line>();
 
+        GraphicsDevice graphics;
+        SpriteBatch spriteBatch;
+        public GraphNode(GraphicsDevice graphics, SpriteBatch spritebatch)
+        {
+            this.graphics = graphics;
+        
+        }
+
+        public void addLine(GraphNode endPoint)
+        { 
+            edges.Add(new Line(
+        
+        }
 
 
         #region XNA

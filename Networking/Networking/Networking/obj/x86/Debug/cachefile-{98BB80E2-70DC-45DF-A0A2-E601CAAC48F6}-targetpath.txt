@@ -1,1 +1,2 @@
 Content\Arial.xnb
+Content\Node.xnb

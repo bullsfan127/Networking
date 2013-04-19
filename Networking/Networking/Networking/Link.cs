@@ -78,7 +78,7 @@ namespace Networking
         /// <summary>
         /// Link Color
         /// </summary>
-        public Color particleColor = Color.Azure;
+        public Color particleColor = Color.Blue;
         /// <summary>
         /// Link Width
         /// </summary>
@@ -90,7 +90,7 @@ namespace Networking
             Distance = Dist;
 
             LinkTexture = new Texture2D(graphics, 1, 1, false, SurfaceFormat.Color);
-            LinkTexture.SetData(new[] { Color.White });
+            LinkTexture.SetData(new[] { particleColor });
         }
         /// <summary>
         /// Actually draws the Link
