@@ -80,13 +80,18 @@ namespace Networking
         #region XNA
         public void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            foreach(Line a in edges)
+            {
+                a.Update(gameTime);
+            }
+
         }
         
         public void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(serverPicture, picturePosition, 
+            spriteBatch.Draw(serverPicture, picturePosition, color);
+                spriteBatch.End();
         }
         #endregion
     }
