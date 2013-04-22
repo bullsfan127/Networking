@@ -101,14 +101,14 @@ namespace Networking
         {
             spriteBatch.Begin();
             spriteBatch.Draw(serverPicture, picturePosition, color);
-
+            spriteBatch.End();
 
             foreach (Line a in edges)
             {
                 a.Draw(gameTime);
             
             }
-            spriteBatch.End();
+           
         }
         #endregion
     }
