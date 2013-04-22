@@ -84,6 +84,8 @@ namespace Networking
         /// </summary>
         public int width = 2;
 
+        Packet intransit;
+
         public Link(GraphicsDevice graphics, int Mag, int Dist)
         {
             Magnitude = Mag;
@@ -119,6 +121,12 @@ namespace Networking
         public void Update(GameTime gameTime)
         {
             throw new NotImplementedException();
+        }
+
+        public void transmit(Packet packet)
+        { 
+        
+        
         }
     }
 }

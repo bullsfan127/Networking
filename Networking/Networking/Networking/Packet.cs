@@ -100,6 +100,7 @@ namespace Networking
        {
            spritebatch.Begin();
            spritebatch.Draw(packetParticle, position, this.color);
+           spritebatch.End();
 
        }
        
@@ -110,7 +111,7 @@ namespace Networking
        
        public void Update(GameTime gameTime)
        {
-           throw new NotImplementedException();
+           
        }
 
        public bool correctPlace(int[] ip)
