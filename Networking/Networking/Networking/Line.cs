@@ -86,5 +86,6 @@ namespace Networking
         {
             outgoing.Draw(gameTime, spriteBatch);
             ingoing.Draw(gameTime, spriteBatch);
-        }}
+        }
+    }
 }

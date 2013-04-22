@@ -56,15 +56,23 @@ namespace Networking
 
         GraphicsDevice graphics;
         SpriteBatch spriteBatch;
+        Color color;
+
+        public Color Color
+        {
+            get { return color; }
+            set { color = value; }
+        }
         public GraphNode(GraphicsDevice graphics, SpriteBatch spritebatch)
         {
             this.graphics = graphics;
+            this.spriteBatch = spritebatch;
         
         }
 
         public void addLine(GraphNode endPoint)
-        { 
-            edges.Add(new Line(
+        {
+            edges.Add(new Line(this, endPoint, spriteBatch, graphics));
         
         }
 
@@ -77,7 +85,8 @@ namespace Networking
         
         public void Draw(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            spriteBatch.Begin();
+            spriteBatch.Draw(serverPicture, picturePosition, 
         }
         #endregion
     }
