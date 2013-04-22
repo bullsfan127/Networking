@@ -123,6 +123,9 @@ namespace Networking
               angle, Vector2.Zero, new Vector2(length, width),
               SpriteEffects.None, 0);
             spritebatch.End();
+
+            if (intransit != null)
+                intransit.Draw(gameTime, spritebatch);
         }
         /// <summary>
         ///

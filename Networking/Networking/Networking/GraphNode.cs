@@ -54,6 +54,12 @@ namespace Networking
 
         List<Line> edges = new List<Line>();
 
+        public List<Line> Edges
+        {
+            get { return edges; }
+            set { edges = value; }
+        }
+
         GraphicsDevice graphics;
         SpriteBatch spriteBatch;
         Color color;
@@ -82,8 +88,9 @@ namespace Networking
 
         public void addLine(GraphNode endPoint)
         {
-            edges.Add(new Line(this, endPoint, spriteBatch, graphics));
-        
+            Line line = new Line(this, endPoint, spriteBatch, graphics);
+            edges.Add(line);
+            endPoint.edges.Add(line);
         }
 
 

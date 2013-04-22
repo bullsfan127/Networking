@@ -74,7 +74,8 @@ namespace Networking
             ingoing = new Link(graphics, 0, (int)distance);
             ingoing.endNode = startNode;
             ingoing.endPosition = new Vector2(startNode.picturePosition.Center.X, startNode.picturePosition.Center.Y);
-        
+
+            
         }
 
         public void Update(GameTime gameTime)
