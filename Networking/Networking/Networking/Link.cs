@@ -57,6 +57,7 @@ namespace Networking
         /// </summary>
         public int Distance;
 
+        
         /// <summary>
         /// Link texture which is actually 1 by 1 texture
         /// </summary>
@@ -84,6 +85,19 @@ namespace Networking
         /// </summary>
         public int width = 2;
 
+        Packet intransit;
+
+        public int lastTime;
+        public int currentTick;
+        
+        public Packet Intransit
+        {
+            get { return intransit; }
+            set { intransit = value; }
+        }
+        public bool finished;
+        public bool transmitting;
+
         public Link(GraphicsDevice graphics, int Mag, int Dist)
         {
             Magnitude = Mag;
@@ -109,6 +123,9 @@ namespace Networking
               angle, Vector2.Zero, new Vector2(length, width),
               SpriteEffects.None, 0);
             spritebatch.End();
+
+            if (intransit != null)
+                intransit.Draw(gameTime, spritebatch);
         }
         /// <summary>
         ///
@@ -118,7 +135,28 @@ namespace Networking
 
         public void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            if (lastTime - gameTime.TotalGameTime.Milliseconds > 200)
+                currentTick++;
+            
+            if (intransit != null)
+            {
+                if (currentTick == Distance)
+                    finished = true;
+                else
+                { 
+                intransit.position.X += (float)Math.Atan2(endPosition.Y - startPosition.Y, endPosition.X - startPosition.X)
+                    * (Vector2.Distance(startPosition, endPosition) / Distance);
+                intransit.position.Y += (float)Math.Atan2(endPosition.Y - startPosition.Y, endPosition.X - startPosition.X)
+                    * (Vector2.Distance(startPosition, endPosition) / Distance); 
+                }
+            }
+            lastTime = gameTime.TotalGameTime.Milliseconds;
+        }
+
+        public void transmit(Packet packet)
+        {
+            intransit = packet;
+            packet.position = startPosition;
         }
     }
 }

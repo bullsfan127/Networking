@@ -54,26 +54,43 @@ namespace Networking
 
         List<Line> edges = new List<Line>();
 
+        public List<Line> Edges
+        {
+            get { return edges; }
+            set { edges = value; }
+        }
+
         GraphicsDevice graphics;
         SpriteBatch spriteBatch;
         Color color;
+
+        int[] ip = new int[3];
+
+        public int[] IP
+        {
+            get { return ip; }
+            set { ip = value; }
+        }
+        
 
         public Color Color
         {
             get { return color; }
             set { color = value; }
         }
-        public GraphNode(GraphicsDevice graphics, SpriteBatch spritebatch)
+        public GraphNode(GraphicsDevice graphics, SpriteBatch spritebatch, int[] Ip)
         {
             this.graphics = graphics;
             this.spriteBatch = spritebatch;
+            this.ip = Ip;
         
         }
 
         public void addLine(GraphNode endPoint)
         {
-            edges.Add(new Line(this, endPoint, spriteBatch, graphics));
-        
+            Line line = new Line(this, endPoint, spriteBatch, graphics);
+            edges.Add(line);
+            endPoint.edges.Add(line);
         }
 
 
@@ -91,7 +108,14 @@ namespace Networking
         {
             spriteBatch.Begin();
             spriteBatch.Draw(serverPicture, picturePosition, color);
-                spriteBatch.End();
+            spriteBatch.End();
+
+            foreach (Line a in edges)
+            {
+                a.Draw(gameTime);
+            
+            }
+           
         }
         #endregion
     }

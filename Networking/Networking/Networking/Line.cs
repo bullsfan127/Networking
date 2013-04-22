@@ -71,21 +71,39 @@ namespace Networking
             outgoing.endNode = endNode;
             outgoing.endPosition = new Vector2(endNode.picturePosition.Center.X, endNode.picturePosition.Center.Y);
 
-            outgoing = new Link(graphics, 0, (int)distance);
-            outgoing.endNode = startNode;
-            outgoing.endPosition = new Vector2(startNode.picturePosition.Center.X, startNode.picturePosition.Center.Y);
-        
+            ingoing = new Link(graphics, 0, (int)distance);
+            ingoing.endNode = startNode;
+            ingoing.endPosition = new Vector2(startNode.picturePosition.Center.X, startNode.picturePosition.Center.Y);
+
+            
         }
 
         public void Update(GameTime gameTime)
         {
+            //update the lines
             outgoing.Update(gameTime);
             ingoing.Update(gameTime);
-        }
+            //check to see if the packet has arrived.
+            if(ingoing.finished == true)
+            {
+                ingoing.endNode.recieved.Enqueue(ingoing.Intransit);
+                ingoing.Intransit = null;
+                ingoing.finished = false;
+                ingoing.transmitting = false;
+        
+            }
+}
         public void Draw(GameTime gameTime)
         {
             outgoing.Draw(gameTime, spriteBatch);
             ingoing.Draw(gameTime, spriteBatch);
         }
+
+        public void send(Packet p)
+        {
+            outgoing.transmit(p);
+        }
+
+
     }
 }
