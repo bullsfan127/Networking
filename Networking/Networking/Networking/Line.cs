@@ -69,15 +69,36 @@ namespace Networking
 
             outgoing = new Link(graphics, 0, (int)distance);
             outgoing.endNode = endNode;
-
-            outgoing.endPosition = new Vector2(endNode.picturePosition.Center.X + (endNode.picturePosition.Width / 2), endNode.picturePosition.Center.Y);
-            outgoing.startPosition = new Vector2(startNode.picturePosition.Center.X + (endNode.picturePosition.Width / 2), startNode.picturePosition.Center.Y);
-
             ingoing = new Link(graphics, 0, (int)distance);
             ingoing.endNode = startNode;
 
-            ingoing.endPosition = new Vector2(endNode.picturePosition.Center.X - (endNode.picturePosition.Width / 2), endNode.picturePosition.Center.Y);
-            ingoing.startPosition = new Vector2(startNode.picturePosition.Center.X - (endNode.picturePosition.Width / 2), startNode.picturePosition.Center.Y);
+            if (endNode.picturePosition.X > startNode.picturePosition.X && endNode.picturePosition.Y < startNode.picturePosition.Y)
+            {
+                outgoing.endPosition = new Vector2(endNode.picturePosition.Center.X - (endNode.picturePosition.Width / 2), endNode.picturePosition.Center.Y);
+                outgoing.startPosition = new Vector2(startNode.picturePosition.Center.X, startNode.picturePosition.Center.Y - (startNode.picturePosition.Width / 2));
+
+                ingoing.endPosition = new Vector2(endNode.picturePosition.Center.X, endNode.picturePosition.Center.Y + (endNode.picturePosition.Width / 2));
+                ingoing.startPosition = new Vector2(startNode.picturePosition.Center.X + (startNode.picturePosition.Width / 2), startNode.picturePosition.Center.Y);
+            }
+            else if (endNode.picturePosition.X < startNode.picturePosition.X && endNode.picturePosition.Y < startNode.picturePosition.Y)
+            {
+                outgoing.endPosition = new Vector2(endNode.picturePosition.Center.X, endNode.picturePosition.Center.Y + (endNode.picturePosition.Width / 2));
+                outgoing.startPosition = new Vector2(startNode.picturePosition.Center.X - (startNode.picturePosition.Width / 2), startNode.picturePosition.Center.Y);
+
+                ingoing.endPosition = new Vector2(endNode.picturePosition.Center.X, endNode.picturePosition.Center.Y - (endNode.picturePosition.Width / 2));
+                ingoing.startPosition = new Vector2(startNode.picturePosition.Center.X + (startNode.picturePosition.Width / 2), startNode.picturePosition.Center.Y);
+            }
+
+            if (endNode.picturePosition.X > startNode.picturePosition.X && endNode.picturePosition.Y > startNode.picturePosition.Y)
+            {
+                outgoing.endPosition = new Vector2(endNode.picturePosition.Center.X, endNode.picturePosition.Center.Y - (endNode.picturePosition.Width / 2));
+                outgoing.startPosition = new Vector2(startNode.picturePosition.Center.X + (startNode.picturePosition.Width / 2), startNode.picturePosition.Center.Y);
+
+                ingoing.endPosition = new Vector2(endNode.picturePosition.Center.X - (endNode.picturePosition.Width / 2), endNode.picturePosition.Center.Y);
+                ingoing.startPosition = new Vector2(startNode.picturePosition.Center.X, startNode.picturePosition.Center.Y + (startNode.picturePosition.Width / 2));
+            }
+            //outgoing.endPosition = new Vector2(endNode.picturePosition.Center.X, endNode.picturePosition.Center.Y);
+            //outgoing.startPosition = new Vector2(startNode.picturePosition.Center.Y, startNode.picturePosition.Center.X);
         }
 
         public void Update(GameTime gameTime)
