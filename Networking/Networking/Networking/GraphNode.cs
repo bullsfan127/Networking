@@ -15,6 +15,7 @@ namespace Networking
     public class GraphNode : IDrawable, IUpdateable
     {
         #region XNAautoimplement
+
         public bool Enabled
         {
             get { throw new NotImplementedException(); }
@@ -26,24 +27,30 @@ namespace Networking
         }
 
         public event EventHandler<EventArgs> DrawOrderChanged;
+
         public event EventHandler<EventArgs> VisibleChanged;
+
         public event EventHandler<EventArgs> EnabledChanged;
+
         public event EventHandler<EventArgs> UpdateOrderChanged;
 
         public bool Visible
         {
             get { throw new NotImplementedException(); }
-        }     
+        }
 
         public int UpdateOrder
         {
             get { throw new NotImplementedException(); }
         }
-#endregion 
+
+        #endregion XNAautoimplement
+
         /// <summary>
         /// the recieved queue
         /// </summary>
         public Queue<Packet> recieved = new Queue<Packet>();
+
         /// <summary>
         /// outgoing packet queue
         /// </summary>
@@ -63,36 +70,46 @@ namespace Networking
             get { return color; }
             set { color = value; }
         }
+
         public GraphNode(GraphicsDevice graphics, SpriteBatch spritebatch)
         {
             this.graphics = graphics;
             this.spriteBatch = spritebatch;
-        
         }
 
         public void addLine(GraphNode endPoint)
         {
             edges.Add(new Line(this, endPoint, spriteBatch, graphics));
-        
         }
 
+        public void loadImage(Texture2D image, Rectangle position)
+        {
+            serverPicture = image;
+            picturePosition = position;
+        }
 
         #region XNA
+
         public void Update(GameTime gameTime)
         {
-            foreach(Line a in edges)
+            foreach (Line a in edges)
             {
                 a.Update(gameTime);
             }
-
         }
-        
+
         public void Draw(GameTime gameTime)
         {
+            foreach (Line a in edges)
+            {
+                a.Draw(gameTime);
+            }
             spriteBatch.Begin();
-            spriteBatch.Draw(serverPicture, picturePosition, color);
-                spriteBatch.End();
+
+            spriteBatch.Draw(serverPicture, picturePosition, Color.Black);
+            spriteBatch.End();
         }
-        #endregion
+
+        #endregion XNA
     }
 }

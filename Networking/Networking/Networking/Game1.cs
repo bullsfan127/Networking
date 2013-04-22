@@ -19,11 +19,16 @@ namespace Networking
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public Link link;
+        Texture2D nodeImage;
+        Link link2;
+        GraphNode node;
+        GraphNode node2;
+        GraphNode node3;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-           
         }
 
         /// <summary>
@@ -47,7 +52,14 @@ namespace Networking
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            node = new GraphNode(GraphicsDevice, spriteBatch);
+            node2 = new GraphNode(GraphicsDevice, spriteBatch);
+            node3 = new GraphNode(GraphicsDevice, spriteBatch);
+            nodeImage = this.Content.Load<Texture2D>("Node");
+            node.loadImage(nodeImage, new Rectangle(100, 100, 50, 50));
 
+            node2.loadImage(nodeImage, new Rectangle(300, 200, 50, 50));
+            node3.loadImage(nodeImage, new Rectangle(500, 100, 50, 50));
             // TODO: use this.Content to load your game content here
         }
 
@@ -70,10 +82,9 @@ namespace Networking
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-              link = new Link(graphics.GraphicsDevice, 10, 15);
-            link.startPosition = new Vector2(100, 100);
-            link.endPosition = new Vector2(200, 200);
-           
+
+            node.addLine(node2);
+            node2.addLine(node3);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -88,7 +99,10 @@ namespace Networking
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            link.Draw(gameTime, spriteBatch);
+
+            node.Draw(gameTime);
+            node2.Draw(gameTime);
+            node3.Draw(gameTime);
             base.Draw(gameTime);
         }
     }
