@@ -71,9 +71,9 @@ namespace Networking
             outgoing.endNode = endNode;
             outgoing.endPosition = new Vector2(endNode.picturePosition.Center.X, endNode.picturePosition.Center.Y);
 
-            outgoing = new Link(graphics, 0, (int)distance);
-            outgoing.endNode = startNode;
-            outgoing.endPosition = new Vector2(startNode.picturePosition.Center.X, startNode.picturePosition.Center.Y);
+            ingoing = new Link(graphics, 0, (int)distance);
+            ingoing.endNode = startNode;
+            ingoing.endPosition = new Vector2(startNode.picturePosition.Center.X, startNode.picturePosition.Center.Y);
         
         }
 
