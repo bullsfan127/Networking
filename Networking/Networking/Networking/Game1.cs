@@ -18,6 +18,7 @@ namespace Networking
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
         public Link link;
         Texture2D nodeImage;
         Link link2;
@@ -52,9 +53,10 @@ namespace Networking
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            node = new GraphNode(GraphicsDevice, spriteBatch);
-            node2 = new GraphNode(GraphicsDevice, spriteBatch);
-            node3 = new GraphNode(GraphicsDevice, spriteBatch);
+            int[] a = new int[] { 1, 2, 3 };
+            node = new GraphNode(GraphicsDevice, spriteBatch, a);
+            node2 = new GraphNode(GraphicsDevice, spriteBatch, a);
+            node3 = new GraphNode(GraphicsDevice, spriteBatch, a);
             nodeImage = this.Content.Load<Texture2D>("Node");
             node.loadImage(nodeImage, new Rectangle(100, 100, 50, 50));
 
@@ -85,6 +87,7 @@ namespace Networking
 
             node.addLine(node2);
             node2.addLine(node3);
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);

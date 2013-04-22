@@ -61,9 +61,23 @@ namespace Networking
 
         List<Line> edges = new List<Line>();
 
+        public List<Line> Edges
+        {
+            get { return edges; }
+            set { edges = value; }
+        }
+
         GraphicsDevice graphics;
         SpriteBatch spriteBatch;
         Color color;
+
+        int[] ip = new int[3];
+
+        public int[] IP
+        {
+            get { return ip; }
+            set { ip = value; }
+        }
 
         public Color Color
         {
@@ -71,15 +85,18 @@ namespace Networking
             set { color = value; }
         }
 
-        public GraphNode(GraphicsDevice graphics, SpriteBatch spritebatch)
+        public GraphNode(GraphicsDevice graphics, SpriteBatch spritebatch, int[] Ip)
         {
             this.graphics = graphics;
             this.spriteBatch = spritebatch;
+            this.ip = Ip;
         }
 
         public void addLine(GraphNode endPoint)
         {
-            edges.Add(new Line(this, endPoint, spriteBatch, graphics));
+            Line line = new Line(this, endPoint, spriteBatch, graphics);
+            edges.Add(line);
+            endPoint.edges.Add(line);
         }
 
         public void loadImage(Texture2D image, Rectangle position)

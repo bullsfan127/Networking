@@ -69,29 +69,42 @@ namespace Networking
 
             outgoing = new Link(graphics, 0, (int)distance);
             outgoing.endNode = endNode;
-            //outgoing.endPosition = new Vector2(endNode.picturePosition.Left, endNode.picturePosition.Center.Y);
-            //outgoing.startPosition = new Vector2(startNode.picturePosition.Center.X, startNode.picturePosition.Bottom);
+
             outgoing.endPosition = new Vector2(endNode.picturePosition.Center.X + (endNode.picturePosition.Width / 2), endNode.picturePosition.Center.Y);
             outgoing.startPosition = new Vector2(startNode.picturePosition.Center.X + (endNode.picturePosition.Width / 2), startNode.picturePosition.Center.Y);
 
             ingoing = new Link(graphics, 0, (int)distance);
             ingoing.endNode = startNode;
-            //ingoing.endPosition = new Vector2(startNode.picturePosition.Right, startNode.picturePosition.Center.Y);
-            //ingoing.startPosition = new Vector2(endNode.picturePosition.Center.X, endNode.picturePosition.Top);
+
             ingoing.endPosition = new Vector2(endNode.picturePosition.Center.X - (endNode.picturePosition.Width / 2), endNode.picturePosition.Center.Y);
             ingoing.startPosition = new Vector2(startNode.picturePosition.Center.X - (endNode.picturePosition.Width / 2), startNode.picturePosition.Center.Y);
         }
 
         public void Update(GameTime gameTime)
         {
+            //update the lines
             outgoing.Update(gameTime);
             ingoing.Update(gameTime);
+
+            //check to see if the packet has arrived.
+            if (ingoing.finished == true)
+            {
+                ingoing.endNode.recieved.Enqueue(ingoing.Intransit);
+                ingoing.Intransit = null;
+                ingoing.finished = false;
+                ingoing.transmitting = false;
+            }
         }
 
         public void Draw(GameTime gameTime)
         {
             outgoing.Draw(gameTime, spriteBatch);
             ingoing.Draw(gameTime, spriteBatch);
+        }
+
+        public void send(Packet p)
+        {
+            outgoing.transmit(p);
         }
     }
 }
