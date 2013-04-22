@@ -79,13 +79,30 @@ namespace Networking
 
         public void Update(GameTime gameTime)
         {
+            //update the lines
             outgoing.Update(gameTime);
             ingoing.Update(gameTime);
-        }
+            //check to see if the packet has arrived.
+            if(ingoing.finished == true)
+            {
+                ingoing.endNode.recieved.Enqueue(ingoing.Intransit);
+                ingoing.Intransit = null;
+                ingoing.finished = false;
+                ingoing.transmitting = false;
+        
+            }
+}
         public void Draw(GameTime gameTime)
         {
             outgoing.Draw(gameTime, spriteBatch);
             ingoing.Draw(gameTime, spriteBatch);
         }
+
+        public void send(Packet p)
+        {
+            outgoing.transmit(p);
+        }
+
+
     }
 }
