@@ -58,15 +58,25 @@ namespace Networking
         SpriteBatch spriteBatch;
         Color color;
 
+        int[] ip = new int[3];
+
+        public int[] IP
+        {
+            get { return ip; }
+            set { ip = value; }
+        }
+        
+
         public Color Color
         {
             get { return color; }
             set { color = value; }
         }
-        public GraphNode(GraphicsDevice graphics, SpriteBatch spritebatch)
+        public GraphNode(GraphicsDevice graphics, SpriteBatch spritebatch, int[] Ip)
         {
             this.graphics = graphics;
             this.spriteBatch = spritebatch;
+            this.ip = Ip;
         
         }
 

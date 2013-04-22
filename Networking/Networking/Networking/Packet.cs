@@ -67,11 +67,26 @@ namespace Networking
        /// <summary>
        /// Image that will move along the link
        /// </summary>
-       public Texture2D packetPartical;
+       public Texture2D packetParticle;
        /// <summary>
        /// position that the packet image will be rendered
        /// </summary>
        public Vector2 position;
+
+       bool onLine;
+       private Color color;
+
+       public Color Color
+       {
+           get { return color; }
+           set { color = value; }
+       }
+
+       public bool OnLine
+       {
+           get { return onLine; }
+           set { onLine = value; }
+       }
 
        public Packet(int data, int[] ipDestAddress, int[] ipSrcAddress)
        {
@@ -83,7 +98,9 @@ namespace Networking
 
        public void Draw(GameTime gameTime, SpriteBatch spritebatch)
        {
-           throw new NotImplementedException();
+           spritebatch.Begin();
+           spritebatch.Draw(packetParticle, position, this.color);
+
        }
        
        public void Draw(GameTime gameTime)
@@ -96,5 +113,11 @@ namespace Networking
            throw new NotImplementedException();
        }
 
-    }
+       public bool correctPlace(int[] ip)
+       {
+
+           return (destination == ip);
+       }
+    
+   }
 }
