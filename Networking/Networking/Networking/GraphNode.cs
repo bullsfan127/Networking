@@ -58,7 +58,8 @@ namespace Networking
 
         public Texture2D serverPicture;
         public Rectangle picturePosition;
-
+        SpriteFont font;
+        string num;
         List<Line> edges = new List<Line>();
 
         public List<Line> Edges
@@ -105,6 +106,12 @@ namespace Networking
             picturePosition = position;
         }
 
+        public void addText(SpriteFont font, string num)
+        {
+            this.font = font;
+            this.num = num;
+        }
+
         #region XNA
 
         public void Update(GameTime gameTime)
@@ -124,6 +131,8 @@ namespace Networking
             spriteBatch.Begin();
 
             spriteBatch.Draw(serverPicture, picturePosition, Color.Black);
+            if (font != null)
+                spriteBatch.DrawString(font, num, new Vector2(this.picturePosition.Center.X, this.picturePosition.Center.Y), Color.White);
             spriteBatch.End();
         }
 

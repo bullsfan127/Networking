@@ -25,6 +25,9 @@ namespace Networking
         GraphNode node;
         GraphNode node2;
         GraphNode node3;
+        GraphNode node4;
+        GraphNode node5;
+        SpriteFont font;
 
         public Game1()
         {
@@ -53,15 +56,27 @@ namespace Networking
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            font = this.Content.Load<SpriteFont>("Arial");
+
             int[] a = new int[] { 1, 2, 3 };
             node = new GraphNode(GraphicsDevice, spriteBatch, a);
             node2 = new GraphNode(GraphicsDevice, spriteBatch, a);
             node3 = new GraphNode(GraphicsDevice, spriteBatch, a);
+            node4 = new GraphNode(GraphicsDevice, spriteBatch, a);
+            node5 = new GraphNode(GraphicsDevice, spriteBatch, a);
             nodeImage = this.Content.Load<Texture2D>("Node");
+            node.addText(font, "1");
             node.loadImage(nodeImage, new Rectangle(100, 100, 50, 50));
 
             node2.loadImage(nodeImage, new Rectangle(300, 200, 50, 50));
+            node2.addText(font, "2");
             node3.loadImage(nodeImage, new Rectangle(500, 100, 50, 50));
+            node3.addText(font, "3");
+            node4.loadImage(nodeImage, new Rectangle(60, 300, 50, 50));
+            node4.addText(font, "4");
+            node5.loadImage(nodeImage, new Rectangle(501, 300, 50, 50));
+            node5.addText(font, "5");
             // TODO: use this.Content to load your game content here
         }
 
@@ -87,6 +102,8 @@ namespace Networking
 
             node.addLine(node2);
             node2.addLine(node3);
+            node.addLine(node4);
+            node3.addLine(node5);
 
             // TODO: Add your update logic here
 
@@ -106,6 +123,8 @@ namespace Networking
             node.Draw(gameTime);
             node2.Draw(gameTime);
             node3.Draw(gameTime);
+            node4.Draw(gameTime);
+            node5.Draw(gameTime);
             base.Draw(gameTime);
         }
     }

@@ -97,6 +97,16 @@ namespace Networking
                 ingoing.endPosition = new Vector2(endNode.picturePosition.Center.X - (endNode.picturePosition.Width / 2), endNode.picturePosition.Center.Y);
                 ingoing.startPosition = new Vector2(startNode.picturePosition.Center.X, startNode.picturePosition.Center.Y + (startNode.picturePosition.Width / 2));
             }
+
+            if (endNode.picturePosition.X < startNode.picturePosition.X && endNode.picturePosition.Y > startNode.picturePosition.Y)
+            {
+                outgoing.endPosition = new Vector2(endNode.picturePosition.Center.X, endNode.picturePosition.Center.Y - (endNode.picturePosition.Width / 2));
+                outgoing.startPosition = new Vector2(startNode.picturePosition.Center.X - (startNode.picturePosition.Width / 2), startNode.picturePosition.Center.Y);
+
+                ingoing.endPosition = new Vector2(endNode.picturePosition.Center.X + (endNode.picturePosition.Width / 2), endNode.picturePosition.Center.Y);
+                ingoing.startPosition = new Vector2(startNode.picturePosition.Center.X, startNode.picturePosition.Center.Y + (startNode.picturePosition.Width / 2));
+            }
+
             //outgoing.endPosition = new Vector2(endNode.picturePosition.Center.X, endNode.picturePosition.Center.Y);
             //outgoing.startPosition = new Vector2(startNode.picturePosition.Center.Y, startNode.picturePosition.Center.X);
         }
