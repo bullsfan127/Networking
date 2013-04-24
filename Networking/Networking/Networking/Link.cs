@@ -135,22 +135,40 @@ namespace Networking
 
         public void Update(GameTime gameTime)
         {
-            if (lastTime - gameTime.TotalGameTime.Milliseconds > 200)
+
+            if (gameTime.TotalGameTime.Milliseconds - lastTime  > 400)
                 currentTick++;
             
             if (intransit != null)
             {
                 if (currentTick == Distance)
+                {
                     finished = true;
+                    endNode.recieved.Enqueue((Packet)intransit.Clone());
+                    intransit = null;
+                }
                 else
-                { 
-                intransit.position.X += (float)Math.Atan2(endPosition.Y - startPosition.Y, endPosition.X - startPosition.X)
-                    * (Vector2.Distance(startPosition, endPosition) / Distance);
-                intransit.position.Y += (float)Math.Atan2(endPosition.Y - startPosition.Y, endPosition.X - startPosition.X)
-                    * (Vector2.Distance(startPosition, endPosition) / Distance); 
+                {
+                    if (currentTick > 0)
+                    {
+                        float slope = (endPosition.Y - startPosition.Y) / (endPosition.X - startPosition.X);
+
+                        intransit.position.X = startPosition.X + (currentTick * ((MathHelper.Distance(startPosition.X, endPosition.X) / (float)Distance))) * slope;
+                        intransit.position.Y = startPosition.Y + (currentTick * ((MathHelper.Distance(startPosition.Y, endPosition.Y) / (float)Distance))) * slope;
+                        currentTick++;
+                        lastTime = gameTime.TotalGameTime.Milliseconds;
+                    }
+                    else
+                    {
+                        intransit.position.X = startPosition.X;
+                        intransit.position.Y = startPosition.Y;
+
+                    }
                 }
             }
-            lastTime = gameTime.TotalGameTime.Milliseconds;
+          
+           if(lastTime == 0)
+               lastTime = gameTime.TotalGameTime.Milliseconds;
         }
 
         public void transmit(Packet packet)

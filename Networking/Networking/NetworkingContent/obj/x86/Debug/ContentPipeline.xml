@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Jonathan\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Arial.xnb</Output>
-      <Time>2013-04-04T21:06:16.3023606-05:00</Time>
+      <Output>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Arial.xnb</Output>
+      <Time>2013-04-04T18:22:53.1918195-05:00</Time>
     </Item>
     <Item>
       <Source>Node.png</Source>
@@ -16,8 +16,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Jonathan\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Node.xnb</Output>
-      <Time>2013-04-21T21:15:45.6390607-05:00</Time>
+      <Output>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Node.xnb</Output>
+      <Time>2013-04-24T10:57:04.5834812-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Packet.png</Source>
+      <Name>Packet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Packet.xnb</Output>
+      <Time>2013-04-24T11:23:00.2094579-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -25,39 +34,39 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Jonathan\Documents\GitHub\Networking\Networking\Networking\NetworkingContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Jonathan\Documents\GitHub\Networking\Networking\Networking\Networking\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Jonathan\Documents\GitHub\Networking\Networking\Networking\NetworkingContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Jonathan\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\NetworkingContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\NetworkingContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
         <Value>2010-08-23T13:41:18-05:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
         <Value>2010-08-23T13:41:18-05:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
         <Value>2010-08-23T13:41:18-05:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
         <Value>2010-08-23T13:41:18-05:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
         <Value>2010-08-23T13:41:18-05:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
         <Value>2010-08-23T13:41:18-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2013-01-18T22:25:51.0862518-06:00</Value>
+        <Value>2013-01-27T23:35:55.5695798-06:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

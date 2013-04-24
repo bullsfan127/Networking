@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Networking
 {
-   public class Packet : IUpdateable, IDrawable
+   public class Packet : IUpdateable, IDrawable, ICloneable
    {
        #region autoImplement
        public bool Enabled
@@ -74,7 +74,7 @@ namespace Networking
        public Vector2 position;
 
        bool onLine;
-       private Color color;
+       private Color color = Color.Orange;
 
        public Color Color
        {
@@ -95,7 +95,14 @@ namespace Networking
            Data = data;
 
        }
+       public Packet(int data, int[] ipDestAddress, int[] ipSrcAddress, Texture2D packet)
+       {
+           start = ipSrcAddress;
+           destination = ipDestAddress;
+           Data = data;
+           packetParticle = packet;
 
+       }
        public void Draw(GameTime gameTime, SpriteBatch spritebatch)
        {
            spritebatch.Begin();
@@ -119,6 +126,15 @@ namespace Networking
 
            return (destination == ip);
        }
-    
+
+
+       public object Clone()
+       {
+           Packet output = new Packet(this.data, this.destination, this.start);
+          output.packetParticle = this.packetParticle;
+           output.position = this.position;
+           output.color = this.color;
+          return output;
+       }
    }
 }

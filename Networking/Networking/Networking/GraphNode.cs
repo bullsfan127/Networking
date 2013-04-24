@@ -115,9 +115,19 @@ namespace Networking
         #region XNA
 
         public void Update(GameTime gameTime)
-        {
+        {   
+            
             foreach (Line a in edges)
             {
+                if ((outgoing.Count > 0))
+                    if((!a.outgoing.transmitting))
+                        a.send(outgoing.Dequeue());
+
+                if((recieved.Count > 0))
+                    if ((!a.outgoing.transmitting))
+                        a.send(recieved.Dequeue());
+               
+            
                 a.Update(gameTime);
             }
         }

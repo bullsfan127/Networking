@@ -28,6 +28,8 @@ namespace Networking
         GraphNode node4;
         GraphNode node5;
         SpriteFont font;
+        List<GraphNode> nodes = new List<GraphNode>();
+
 
         public Game1()
         {
@@ -77,6 +79,16 @@ namespace Networking
             node4.addText(font, "4");
             node5.loadImage(nodeImage, new Rectangle(501, 300, 50, 50));
             node5.addText(font, "5");
+
+            node.addLine(node2);
+            node2.addLine(node3);
+            node.addLine(node4);
+            node3.addLine(node5);
+            nodes.Add(node);
+            nodes.Add(node2);
+            nodes.Add(node3);
+            nodes.Add(node4);
+            nodes.Add(node5);
             // TODO: use this.Content to load your game content here
         }
 
@@ -99,11 +111,20 @@ namespace Networking
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+            Packet a = new Packet(123, node.IP, node4.IP);
+            a.Color = Color.BlueViolet;
+            a.packetParticle = this.Content.Load<Texture2D>("Packet");
+            node.outgoing.Enqueue(a);
 
-            node.addLine(node2);
-            node2.addLine(node3);
-            node.addLine(node4);
-            node3.addLine(node5);
+            foreach (GraphNode nod in nodes)
+            {
+                nod.Update(gameTime);
+
+                nod.outgoing.Enqueue(new Packet(123, node.IP, node4.IP,this.Content.Load<Texture2D>("Packet")) { 
+                });
+
+
+            }
 
             // TODO: Add your update logic here
 

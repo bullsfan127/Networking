@@ -14,3 +14,4 @@ C:\Users\Jonathan\Documents\GitHub\Networking\Networking\Networking\Networking\o
 C:\Users\Jonathan\Documents\GitHub\Networking\Networking\Networking\Networking\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Jonathan\Documents\GitHub\Networking\Networking\Networking\Networking\obj\x86\Debug\Networking.exe
 C:\Users\Jonathan\Documents\GitHub\Networking\Networking\Networking\Networking\obj\x86\Debug\Networking.pdb
+C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Packet.xnb

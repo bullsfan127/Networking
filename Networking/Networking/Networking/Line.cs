@@ -125,6 +125,9 @@ namespace Networking
                 ingoing.finished = false;
                 ingoing.transmitting = false;
             }
+            
+           
+                
         }
 
         public void Draw(GameTime gameTime)
