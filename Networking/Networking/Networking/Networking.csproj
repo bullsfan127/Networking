@@ -110,6 +110,7 @@
     <Compile Include="GraphNode.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Link.cs" />
+    <Compile Include="Network.cs" />
     <Compile Include="Packet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

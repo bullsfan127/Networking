@@ -29,7 +29,7 @@ namespace Networking
         GraphNode node5;
         SpriteFont font;
         List<GraphNode> nodes = new List<GraphNode>();
-
+        Network graphNetwork;
 
         public Game1()
         {
@@ -62,34 +62,44 @@ namespace Networking
             font = this.Content.Load<SpriteFont>("Arial");
 
             int[] a = new int[] { 1, 2, 3 };
+            int[] b = new int[] { 4, 5, 6 };
+            int[] c = new int[] { 7, 8, 9 };
+            int[] d = new int[] { 10, 11, 12 };
+            int[] e = new int[] { 13, 14, 15 };
+            int[] f = new int[] { 16, 17, 18 };
             node = new GraphNode(GraphicsDevice, spriteBatch, a);
-            node2 = new GraphNode(GraphicsDevice, spriteBatch, a);
-            node3 = new GraphNode(GraphicsDevice, spriteBatch, a);
-            node4 = new GraphNode(GraphicsDevice, spriteBatch, a);
-            node5 = new GraphNode(GraphicsDevice, spriteBatch, a);
+            node2 = new GraphNode(GraphicsDevice, spriteBatch, b);
+            node3 = new GraphNode(GraphicsDevice, spriteBatch, c);
+            node4 = new GraphNode(GraphicsDevice, spriteBatch, d);
+            node5 = new GraphNode(GraphicsDevice, spriteBatch, f);
             nodeImage = this.Content.Load<Texture2D>("Node");
             node.addText(font, "1");
             node.loadImage(nodeImage, new Rectangle(100, 100, 50, 50));
 
             node2.loadImage(nodeImage, new Rectangle(300, 200, 50, 50));
             node2.addText(font, "2");
-            node3.loadImage(nodeImage, new Rectangle(500, 100, 50, 50));
+            node3.loadImage(nodeImage, new Rectangle(500, 101, 50, 50));
             node3.addText(font, "3");
             node4.loadImage(nodeImage, new Rectangle(60, 300, 50, 50));
             node4.addText(font, "4");
-            node5.loadImage(nodeImage, new Rectangle(501, 300, 50, 50));
+            node5.loadImage(nodeImage, new Rectangle(501, 301, 50, 50));
             node5.addText(font, "5");
 
-            node.addLine(node2);
-            node2.addLine(node3);
-            node.addLine(node4);
-            node3.addLine(node5);
-            nodes.Add(node);
-            nodes.Add(node2);
-            nodes.Add(node3);
-            nodes.Add(node4);
-            nodes.Add(node5);
+            
             // TODO: use this.Content to load your game content here
+            XNAFields myFields = new XNAFields(spriteBatch, graphics);
+            graphNetwork = new Network(myFields);
+            graphNetwork.addNode(null, node);
+            graphNetwork.addNode(node, node3);
+            graphNetwork.addNode(node3, node5);
+            graphNetwork.addNode(node, node4);
+
+            graphNetwork.addNode(node3, node2);
+            
+            graphNetwork.addEdge(node2, node5); 
+            graphNetwork.addEdge(node5, node4);
+            graphNetwork.addEdge(node5, node);
+            
         }
 
         /// <summary>
@@ -116,18 +126,18 @@ namespace Networking
             a.packetParticle = this.Content.Load<Texture2D>("Packet");
             node.outgoing.Enqueue(a);
 
-            foreach (GraphNode nod in nodes)
+            for(int i =0; i < 3; i++)
             {
-                nod.Update(gameTime);
+                graphNetwork.findNode(node5).outgoing.Enqueue(new Packet(123, node.IP, node4.IP,this.Content.Load<Texture2D>("Packet"))
 
-                nod.outgoing.Enqueue(new Packet(123, node.IP, node4.IP,this.Content.Load<Texture2D>("Packet")) { 
+               { 
                 });
 
 
             }
 
             // TODO: Add your update logic here
-
+            graphNetwork.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -141,12 +151,32 @@ namespace Networking
 
             // TODO: Add your drawing code here
 
-            node.Draw(gameTime);
-            node2.Draw(gameTime);
-            node3.Draw(gameTime);
-            node4.Draw(gameTime);
-            node5.Draw(gameTime);
+            //node.Draw(gameTime);
+            //node2.Draw(gameTime);
+            //node3.Draw(gameTime);
+            //node4.Draw(gameTime);
+            //node5.Draw(gameTime);
+            graphNetwork.Draw(gameTime);
             base.Draw(gameTime);
         }
     }
+
+    public struct XNAFields
+    {
+        public SpriteBatch spriteBatch;
+        public GraphicsDevice graphics;
+        public Viewport viewPort;
+        public XNAFields(SpriteBatch _spriteBatch, GraphicsDeviceManager graphicDeviceManager)
+        {
+            this.spriteBatch = _spriteBatch;
+            this.graphics = graphicDeviceManager.GraphicsDevice;
+            this.viewPort = graphicDeviceManager.GraphicsDevice.Viewport;
+        
+        
+        }
+    
+    
+    }
+
+
 }

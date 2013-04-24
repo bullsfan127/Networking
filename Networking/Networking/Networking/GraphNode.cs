@@ -121,11 +121,11 @@ namespace Networking
             {
                 if ((outgoing.Count > 0))
                     if((!a.outgoing.transmitting))
-                        a.send(outgoing.Dequeue());
+                        a.send(outgoing.Dequeue(), this);
 
                 if((recieved.Count > 0))
                     if ((!a.outgoing.transmitting))
-                        a.send(recieved.Dequeue());
+                        a.send(recieved.Dequeue(), this);
                
             
                 a.Update(gameTime);

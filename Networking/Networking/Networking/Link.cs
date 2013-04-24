@@ -18,15 +18,15 @@ namespace Networking
     /// </summary>
     public class Link : IUpdateable, IDrawable
     {
-         #region autoImplement
-       public bool Enabled
+        #region autoImplement
+        public bool Enabled
         {
             get { throw new NotImplementedException(); }
         }
 
         public event EventHandler<EventArgs> EnabledChanged;
 
-        
+
         public int UpdateOrder
         {
             get { throw new NotImplementedException(); }
@@ -46,18 +46,18 @@ namespace Networking
         }
 
         public event EventHandler<EventArgs> VisibleChanged;
-       #endregion
+        #endregion
 
-       /// <summary>
-       /// How busy is the line
-       /// </summary>
+        /// <summary>
+        /// How busy is the line
+        /// </summary>
         public int Magnitude;
         /// <summary>
         /// How long is the Link
         /// </summary>
         public int Distance;
 
-        
+
         /// <summary>
         /// Link texture which is actually 1 by 1 texture
         /// </summary>
@@ -89,7 +89,7 @@ namespace Networking
 
         public int lastTime;
         public int currentTick;
-        
+
         public Packet Intransit
         {
             get { return intransit; }
@@ -113,11 +113,11 @@ namespace Networking
         /// <param name="spritebatch">the spritebatch assumed unstarted</param>
         public void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
-            
+
             float angle = (float)Math.Atan2(endPosition.Y - startPosition.Y, endPosition.X - startPosition.X);
 
             float length = Vector2.Distance(startPosition, endPosition);
-            
+
             spritebatch.Begin();
             spritebatch.Draw(LinkTexture, startPosition, null, particleColor,
               angle, Vector2.Zero, new Vector2(length, width),
@@ -131,14 +131,14 @@ namespace Networking
         ///
         /// </summary>
         /// <param name="gameTime"></param>
-        public void Draw(GameTime gameTime){}
+        public void Draw(GameTime gameTime) { }
 
         public void Update(GameTime gameTime)
         {
 
-            if (gameTime.TotalGameTime.Milliseconds - lastTime  > 400)
+            if (gameTime.TotalGameTime.Milliseconds - lastTime > 400)
                 currentTick++;
-            
+
             if (intransit != null)
             {
                 if (currentTick == Distance)
@@ -166,15 +166,19 @@ namespace Networking
                     }
                 }
             }
-          
-           if(lastTime == 0)
-               lastTime = gameTime.TotalGameTime.Milliseconds;
+
+            if (lastTime == 0)
+                lastTime = gameTime.TotalGameTime.Milliseconds;
         }
 
         public void transmit(Packet packet)
         {
-            intransit = packet;
-            packet.position = startPosition;
+            if (packet != null)
+            {
+                intransit = packet;
+                packet.position = startPosition;
+
+            }
         }
     }
 }
