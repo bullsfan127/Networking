@@ -89,7 +89,9 @@ namespace Networking
 
         public int lastTime;
         public int currentTick;
-
+        
+        Vector2 pixelsPerMove;
+        Vector2 direction;
         public Packet Intransit
         {
             get { return intransit; }
@@ -105,6 +107,11 @@ namespace Networking
 
             LinkTexture = new Texture2D(graphics, 1, 1, false, SurfaceFormat.Color);
             LinkTexture.SetData(new[] { particleColor });
+            direction = startPosition - endPosition;
+            direction.Normalize();
+            pixelsPerMove.X = MathHelper.Distance(startPosition.X, endPosition.X);
+            pixelsPerMove.Y = MathHelper.Distance(startPosition.Y, endPosition.Y);
+
         }
         /// <summary>
         /// Actually draws the Link
@@ -124,6 +131,7 @@ namespace Networking
               SpriteEffects.None, 0);
             spritebatch.End();
 
+
             if (intransit != null)
                 intransit.Draw(gameTime, spritebatch);
         }
@@ -135,37 +143,44 @@ namespace Networking
 
         public void Update(GameTime gameTime)
         {
-
-            if (gameTime.TotalGameTime.Milliseconds - lastTime > 400)
-                currentTick++;
-
-            if (intransit != null)
-            {
-                if (currentTick == Distance)
+            
+            
+            if (gameTime.TotalGameTime.Milliseconds - lastTime > 200)
+            currentTick++;
+                
+            if (intransit != null)    
+            if(!intransit.position.Equals(endPosition))
                 {
-                    finished = true;
-                    endNode.recieved.Enqueue((Packet)intransit.Clone());
-                    intransit = null;
-                }
-                else
-                {
-                    if (currentTick > 0)
+                    if (currentTick == Distance)
                     {
-                        float slope = (endPosition.Y - startPosition.Y) / (endPosition.X - startPosition.X);
+                        finished = true;
+                        currentTick = 0;
 
-                        intransit.position.X = startPosition.X + (currentTick * ((MathHelper.Distance(startPosition.X, endPosition.X) / (float)Distance))) * slope;
-                        intransit.position.Y = startPosition.Y + (currentTick * ((MathHelper.Distance(startPosition.Y, endPosition.Y) / (float)Distance))) * slope;
-                        currentTick++;
-                        lastTime = gameTime.TotalGameTime.Milliseconds;
                     }
                     else
                     {
-                        intransit.position.X = startPosition.X;
-                        intransit.position.Y = startPosition.Y;
+                        if (currentTick > 0)
+                        {
+                            float slope = (endPosition.Y - startPosition.Y) / (endPosition.X - startPosition.X);
 
+                            intransit.position += direction * pixelsPerMove/ new Vector2(Distance, Distance);
+                        
+                            currentTick++;
+                            lastTime = gameTime.TotalGameTime.Milliseconds;
+                        }
+                        else
+                        {
+                            intransit.position= startPosition;
+                         
+
+                        }
                     }
                 }
-            }
+                else
+                {
+                    finished = true;
+                    currentTick = 0;
+                }
 
             if (lastTime == 0)
                 lastTime = gameTime.TotalGameTime.Milliseconds;

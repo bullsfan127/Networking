@@ -106,6 +106,7 @@ namespace Networking
        public void Draw(GameTime gameTime, SpriteBatch spritebatch)
        {
            spritebatch.Begin();
+            if(OnLine)
            spritebatch.Draw(packetParticle, position, this.color);
            spritebatch.End();
 
@@ -136,5 +137,13 @@ namespace Networking
            output.color = this.color;
           return output;
        }
+       public string toString()
+       {
+           string output;
+           output = "" + data + " Pos: " + position.ToString() + " " + OnLine.ToString();
+           return output;
+       
+       }
+   
    }
 }

@@ -131,14 +131,26 @@ namespace Networking
             ingoing.Update(gameTime);
 
             //check to see if the packet has arrived.
+            if (ingoing.Intransit != null)
             if (ingoing.finished == true)
             {
-                ingoing.endNode.recieved.Enqueue(ingoing.Intransit);
+                ingoing.endNode.recieved.Enqueue((Packet)ingoing.Intransit.Clone());
+                ingoing.Intransit.OnLine = false;
                 ingoing.Intransit = null;
                 ingoing.finished = false;
                 ingoing.transmitting = false;
+                
             }
-            
+            if(outgoing.Intransit != null)
+            if (outgoing.finished == true)
+            {
+                outgoing.endNode.recieved.Enqueue((Packet)outgoing.Intransit.Clone());
+                outgoing.Intransit.OnLine = false;
+                outgoing.Intransit = null;
+                outgoing.finished = false;
+                outgoing.transmitting = false;
+
+            }
            
                 
         }
@@ -152,9 +164,18 @@ namespace Networking
         public void send(Packet p, GraphNode startNode)
         {
             if (startNode.Equals(NeighborOne))
+            { 
+                p.OnLine = true;
                 outgoing.transmit(p);
+                outgoing.finished = false;
+               
+            }
             else
+            { 
+                p.OnLine = true;
                 ingoing.transmit(p);
+                ingoing.finished = false;
+            }
         }
     }
 }

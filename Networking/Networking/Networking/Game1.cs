@@ -18,7 +18,7 @@ namespace Networking
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        Packet ap;
         public Link link;
         Texture2D nodeImage;
         Link link2;
@@ -58,7 +58,7 @@ namespace Networking
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
             font = this.Content.Load<SpriteFont>("Arial");
 
             int[] a = new int[] { 1, 2, 3 };
@@ -99,7 +99,19 @@ namespace Networking
             graphNetwork.addEdge(node2, node5); 
             graphNetwork.addEdge(node5, node4);
             graphNetwork.addEdge(node5, node);
-            
+            for (int i = 0; i < 19; i++)
+            {
+                graphNetwork.findNode(node5).outgoing.Enqueue(new Packet(123, node.IP, node4.IP, this.Content.Load<Texture2D>("Packet"))
+
+                {
+                });
+
+
+            }    
+            ap = new Packet(123, node.IP, node4.IP, this.Content.Load<Texture2D>("Packet"));
+             ap.packetParticle = this.Content.Load<Texture2D>("Packet");
+             graphNetwork.findNode(node5).outgoing.Enqueue(ap);
+
         }
 
         /// <summary>
@@ -121,20 +133,12 @@ namespace Networking
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-            Packet a = new Packet(123, node.IP, node4.IP);
-            a.Color = Color.BlueViolet;
-            a.packetParticle = this.Content.Load<Texture2D>("Packet");
-            node.outgoing.Enqueue(a);
+           
+            ap.Color = Color.BlueViolet;
+           
+            
 
-            for(int i =0; i < 3; i++)
-            {
-                graphNetwork.findNode(node5).outgoing.Enqueue(new Packet(123, node.IP, node4.IP,this.Content.Load<Texture2D>("Packet"))
-
-               { 
-                });
-
-
-            }
+        
 
             // TODO: Add your update logic here
             graphNetwork.Update(gameTime);
@@ -157,6 +161,9 @@ namespace Networking
             //node4.Draw(gameTime);
             //node5.Draw(gameTime);
             graphNetwork.Draw(gameTime);
+            spriteBatch.Begin();
+                spriteBatch.DrawString(font, ap.toString(), Vector2.Zero, Color.Red);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
