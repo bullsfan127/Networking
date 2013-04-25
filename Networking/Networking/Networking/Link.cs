@@ -101,7 +101,7 @@ namespace Networking
         /// <summary>
         /// Link Width
         /// </summary>
-        public int width = 2;
+        public int width = 4;
 
         Packet intransit;
 
@@ -201,6 +201,19 @@ namespace Networking
             {
                 intransit = packet;
                 packet.position = startPosition;
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public bool transmit(Packet p, Point point)
+        {
+            if ((p != null) && !transmitting)
+            {
+                intransit = p;
+                p.position = new Vector2(point.X, point.Y);
+                
                 return true;
             }
             else

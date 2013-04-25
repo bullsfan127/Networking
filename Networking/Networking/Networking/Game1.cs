@@ -96,7 +96,7 @@ namespace Networking
 
             graphNetwork.addNode(node3, node2, 200, 150);
             
-            graphNetwork.addEdge(node2, node5, 200, 150); 
+            graphNetwork.addEdge(node5, node2, 200, 150); 
             graphNetwork.addEdge(node5, node4, 200, 150);
             graphNetwork.addEdge(node5, node, 200, 150);
             for (int i = 0; i < 19; i++)
@@ -135,8 +135,9 @@ namespace Networking
                 this.Exit();
            
             ap.Color = Color.BlueViolet;
-           
-            if(Keyboard.GetState().IsKeyDown(Keys.Tab))
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Tab))
+            {
                 for (int i = 0; i < 19; i++)
                 {
                     graphNetwork.findNode(node5).outgoing.Enqueue(new Packet(123, node.IP, node4.IP, this.Content.Load<Texture2D>("Packet"))
@@ -145,8 +146,9 @@ namespace Networking
                     });
 
 
-                } 
-
+                }
+                graphNetwork.findNode(node).outgoing.Enqueue(ap);
+            }
         
 
             // TODO: Add your update logic here
