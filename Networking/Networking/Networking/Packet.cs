@@ -49,6 +49,14 @@ namespace Networking
        /// </summary>
        int data;
 
+       Rectangle destinationRect;
+
+       public Rectangle PositionRect
+       {
+           get { return destinationRect; }
+           set { destinationRect = value; }
+       }
+
        public int Data
        {
            get { return data; }
@@ -119,7 +127,7 @@ namespace Networking
        
        public void Update(GameTime gameTime)
        {
-           
+           PositionRect = new Rectangle((int)position.X, (int)position.Y, packetParticle.Width, packetParticle.Height);
        }
 
        public bool correctPlace(int[] ip)

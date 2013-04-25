@@ -28,20 +28,22 @@ namespace Networking
        
        
        }
-       public void addEdge(GraphNode Neighbor1, GraphNode Neighbor2)
+       public void addEdge(GraphNode Neighbor1, GraphNode Neighbor2, int Distance, int Magnitude)
        {
             Line newLink = new Line(findNode(Neighbor1), findNode(Neighbor2), xnaStuff.spriteBatch, xnaStuff.graphics);
                findNode(Neighbor1).Edges.Add(newLink);
                findNode(Neighbor2).Edges.Add(newLink);
           
        }
-       public void addNode(GraphNode Neighbor, GraphNode node)
+       public void addNode(GraphNode Neighbor, GraphNode node, int Distance, int Magnitude)
        {    
 
             if (Neighbor != null)
             {
                 GraphList.Add(node);
              Line newLink = new Line(findNode(Neighbor), node, xnaStuff.spriteBatch, xnaStuff.graphics);
+             newLink.setDistance(Distance);
+             newLink.setMagnitude(Magnitude);
            findNode(Neighbor).Edges.Add(newLink);
            findNode(node).Edges.Add(newLink);
 

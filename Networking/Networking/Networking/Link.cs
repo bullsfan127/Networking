@@ -70,11 +70,29 @@ namespace Networking
         /// <summary>
         /// Drawing vector for drawing the line
         /// </summary>
-        public Vector2 startPosition;
+        private Vector2 _startPosition;
+
+        public Vector2 startPosition
+        {
+            get { return _startPosition; }
+            set {
+                PositionChanged = true;
+                _startPosition = value; 
+                }
+        }
         /// <summary>
         /// End vector for drawing the line
         /// </summary>
-        public Vector2 endPosition;
+        private Vector2 _endPosition;
+
+        public Vector2 endPosition
+        {
+            get { return _endPosition; }
+            set {
+                PositionChanged = true;
+                _endPosition = value; 
+                }
+        }
 
         /// <summary>
         /// Link Color
@@ -87,8 +105,7 @@ namespace Networking
 
         Packet intransit;
 
-        public int lastTime;
-        public int currentTick;
+        public bool PositionChanged = false;
         
         Vector2 pixelsPerMove;
         Vector2 direction;
@@ -99,7 +116,7 @@ namespace Networking
         }
         public bool finished;
         public bool transmitting;
-
+        float packetSpeed;
         public Link(GraphicsDevice graphics, int Mag, int Dist)
         {
             Magnitude = Mag;
@@ -143,57 +160,48 @@ namespace Networking
 
         public void Update(GameTime gameTime)
         {
-            
-            
-            if (gameTime.TotalGameTime.Milliseconds - lastTime > 200)
-            currentTick++;
-                
-            if (intransit != null)    
-            if(!intransit.position.Equals(endPosition))
+            intransit.Update(gameTime);
+            if (PositionChanged)
+            {
+                direction = endPosition - startPosition;
+                direction.Normalize();
+                pixelsPerMove.X = MathHelper.Distance(startPosition.X, endPosition.X);
+                pixelsPerMove.Y = MathHelper.Distance(startPosition.Y, endPosition.Y);
+                packetSpeed = .1f;
+                PositionChanged = false;
+            }
+
+
+
+            if (intransit != null)
+            {
+                if ((!intransit.PositionRect.Intersects(endNode.picturePosition)) && !finished)
                 {
-                    if (currentTick == Distance)
-                    {
-                        finished = true;
-                        currentTick = 0;
 
-                    }
-                    else
-                    {
-                        if (currentTick > 0)
-                        {
-                            float slope = (endPosition.Y - startPosition.Y) / (endPosition.X - startPosition.X);
+                    intransit.position += (direction *  (float)gameTime.ElapsedGameTime.TotalMilliseconds * packetSpeed);
 
-                            intransit.position += direction * pixelsPerMove/ new Vector2(Distance, Distance);
-                        
-                            currentTick++;
-                            lastTime = gameTime.TotalGameTime.Milliseconds;
-                        }
-                        else
-                        {
-                            intransit.position= startPosition;
-                         
 
-                        }
-                    }
+
                 }
                 else
                 {
                     finished = true;
-                    currentTick = 0;
+                    intransit.position = endPosition;
                 }
 
-            if (lastTime == 0)
-                lastTime = gameTime.TotalGameTime.Milliseconds;
+            }
         }
 
-        public void transmit(Packet packet)
+        public bool transmit(Packet packet)
         {
-            if (packet != null)
+            if ((packet != null) && !transmitting)
             {
                 intransit = packet;
                 packet.position = startPosition;
-
+                return true;
             }
+            else
+                return false;
         }
     }
 }

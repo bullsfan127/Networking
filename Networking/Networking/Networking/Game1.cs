@@ -89,16 +89,16 @@ namespace Networking
             // TODO: use this.Content to load your game content here
             XNAFields myFields = new XNAFields(spriteBatch, graphics);
             graphNetwork = new Network(myFields);
-            graphNetwork.addNode(null, node);
-            graphNetwork.addNode(node, node3);
-            graphNetwork.addNode(node3, node5);
-            graphNetwork.addNode(node, node4);
+            graphNetwork.addNode(null, node, 200, 150);
+            graphNetwork.addNode(node, node3, 200, 150);
+            graphNetwork.addNode(node3, node5, 200, 150);
+            graphNetwork.addNode(node, node4, 200, 150);
 
-            graphNetwork.addNode(node3, node2);
+            graphNetwork.addNode(node3, node2, 200, 150);
             
-            graphNetwork.addEdge(node2, node5); 
-            graphNetwork.addEdge(node5, node4);
-            graphNetwork.addEdge(node5, node);
+            graphNetwork.addEdge(node2, node5, 200, 150); 
+            graphNetwork.addEdge(node5, node4, 200, 150);
+            graphNetwork.addEdge(node5, node, 200, 150);
             for (int i = 0; i < 19; i++)
             {
                 graphNetwork.findNode(node5).outgoing.Enqueue(new Packet(123, node.IP, node4.IP, this.Content.Load<Texture2D>("Packet"))
@@ -110,7 +110,7 @@ namespace Networking
             }    
             ap = new Packet(123, node.IP, node4.IP, this.Content.Load<Texture2D>("Packet"));
              ap.packetParticle = this.Content.Load<Texture2D>("Packet");
-             graphNetwork.findNode(node5).outgoing.Enqueue(ap);
+             graphNetwork.findNode(node).outgoing.Enqueue(ap);
 
         }
 

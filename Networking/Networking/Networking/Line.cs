@@ -177,5 +177,17 @@ namespace Networking
                 ingoing.finished = false;
             }
         }
+
+        internal void setMagnitude(int Magnitude)
+        {
+            ingoing.Magnitude = Magnitude;
+            outgoing.Magnitude = Magnitude;
+        }
+
+        internal void setDistance(int Distance)
+        {
+            ingoing.Distance = Distance;
+            outgoing.Distance = Distance;
+        }
     }
 }
