@@ -56,26 +56,28 @@ namespace Networking
         /// </summary>
         public Link ingoing;
 
+        Fields fields;
         private SpriteBatch spriteBatch;
 
         private GraphNode NeighborOne;
         private GraphNode NeighborTwo;
 
-        public Line(GraphNode Neighbor1, GraphNode Neighbor2, SpriteBatch batch, GraphicsDevice graphics)
+        public Line(GraphNode Neighbor1, GraphNode Neighbor2, Fields f)
         {
             NeighborOne = Neighbor1;
             NeighborTwo = Neighbor2;
 
-            spriteBatch = batch;
+            spriteBatch = f.spriteBatch;
 
+            fields = f;
             double distance = Math.Sqrt(Math.Pow((Neighbor2.picturePosition.Center.X -
                                                 Neighbor1.picturePosition.Center.X), 2) +
                                                 Math.Pow((Neighbor2.picturePosition.Center.Y -
                                                 Neighbor1.picturePosition.Center.Y), 2));
 
-            outgoing = new Link(graphics, 0, (int)distance);
+            outgoing = new Link(f, 0, (int)distance);
             outgoing.endNode = Neighbor2;
-            ingoing = new Link(graphics, 0, (int)distance);
+            ingoing = new Link(f, 0, (int)distance);
             ingoing.endNode = Neighbor1;
 
             if (Neighbor2.picturePosition.X > Neighbor1.picturePosition.X && Neighbor2.picturePosition.Y < Neighbor1.picturePosition.Y)

@@ -73,6 +73,7 @@ namespace Networking
         Color color;
 
         int[] ip = new int[3];
+        private Fields fields;
 
         public int[] IP
         {
@@ -86,16 +87,17 @@ namespace Networking
             set { color = value; }
         }
 
-        public GraphNode(GraphicsDevice graphics, SpriteBatch spritebatch, int[] Ip)
+        public GraphNode(Fields f, int[] Ip)
         {
-            this.graphics = graphics;
-            this.spriteBatch = spritebatch;
+            this.graphics = f.graphics;
+            this.spriteBatch = f.spriteBatch;
             this.ip = Ip;
+            fields = f;
         }
 
         public void addLine(GraphNode endPoint)
         {
-            Line line = new Line(this, endPoint, spriteBatch, graphics);
+            Line line = new Line(this, endPoint, fields);
             edges.Add(line);
             endPoint.edges.Add(line);
         }
@@ -115,19 +117,20 @@ namespace Networking
         #region XNA
 
         public void Update(GameTime gameTime)
-        {   
-            
+        {
+
             foreach (Line a in edges)
             {
                 if ((outgoing.Count > 0))
-                    if((!a.outgoing.transmitting))
+                    if ((!a.outgoing.transmitting))
+                    {
                         a.send(outgoing.Dequeue(), this);
-
-                if((recieved.Count > 0))
+                    }
+                if ((recieved.Count > 0))
                     if ((!a.outgoing.transmitting))
                         a.send(recieved.Dequeue(), this);
-               
-            
+
+
                 a.Update(gameTime);
             }
         }

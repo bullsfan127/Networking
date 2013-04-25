@@ -47,7 +47,7 @@ namespace Networking
 
         public event EventHandler<EventArgs> VisibleChanged;
         #endregion
-
+        
         /// <summary>
         /// How busy is the line
         /// </summary>
@@ -109,6 +109,8 @@ namespace Networking
         
         Vector2 pixelsPerMove;
         Vector2 direction;
+
+        
         public Packet Intransit
         {
             get { return intransit; }
@@ -117,12 +119,12 @@ namespace Networking
         public bool finished;
         public bool transmitting;
         float packetSpeed;
-        public Link(GraphicsDevice graphics, int Mag, int Dist)
+        public Link(Fields f, int Mag, int Dist)
         {
             Magnitude = Mag;
             Distance = Dist;
-
-            LinkTexture = new Texture2D(graphics, 1, 1, false, SurfaceFormat.Color);
+            
+            LinkTexture = new Texture2D(f.graphics, 1, 1, false, SurfaceFormat.Color);
             LinkTexture.SetData(new[] { particleColor });
             direction = startPosition - endPosition;
             direction.Normalize();
@@ -160,21 +162,22 @@ namespace Networking
 
         public void Update(GameTime gameTime)
         {
-            intransit.Update(gameTime);
+           
             if (PositionChanged)
             {
                 direction = endPosition - startPosition;
                 direction.Normalize();
                 pixelsPerMove.X = MathHelper.Distance(startPosition.X, endPosition.X);
                 pixelsPerMove.Y = MathHelper.Distance(startPosition.Y, endPosition.Y);
-                packetSpeed = .1f;
+                packetSpeed = .075f;
                 PositionChanged = false;
             }
 
 
 
             if (intransit != null)
-            {
+            { 
+                intransit.Update(gameTime);
                 if ((!intransit.PositionRect.Intersects(endNode.picturePosition)) && !finished)
                 {
 

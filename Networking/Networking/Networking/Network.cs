@@ -15,14 +15,14 @@ namespace Networking
    public class Network : IUpdateable, IDrawable
     {
        List<GraphNode> GraphList = new List<GraphNode>();
-       XNAFields xnaStuff;
+       Fields xnaStuff;
 
        public int Count
        {
            get { return GraphList.Count; }
            
        }
-       public Network(XNAFields x)
+       public Network(Fields x)
        {
            xnaStuff = x;
        
@@ -30,7 +30,7 @@ namespace Networking
        }
        public void addEdge(GraphNode Neighbor1, GraphNode Neighbor2, int Distance, int Magnitude)
        {
-            Line newLink = new Line(findNode(Neighbor1), findNode(Neighbor2), xnaStuff.spriteBatch, xnaStuff.graphics);
+            Line newLink = new Line(findNode(Neighbor1), findNode(Neighbor2), xnaStuff);
                findNode(Neighbor1).Edges.Add(newLink);
                findNode(Neighbor2).Edges.Add(newLink);
           
@@ -41,7 +41,7 @@ namespace Networking
             if (Neighbor != null)
             {
                 GraphList.Add(node);
-             Line newLink = new Line(findNode(Neighbor), node, xnaStuff.spriteBatch, xnaStuff.graphics);
+             Line newLink = new Line(findNode(Neighbor), node, xnaStuff);
              newLink.setDistance(Distance);
              newLink.setMagnitude(Magnitude);
            findNode(Neighbor).Edges.Add(newLink);

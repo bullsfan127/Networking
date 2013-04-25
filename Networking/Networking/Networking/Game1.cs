@@ -30,7 +30,7 @@ namespace Networking
         SpriteFont font;
         List<GraphNode> nodes = new List<GraphNode>();
         Network graphNetwork;
-
+        Fields fields;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -60,23 +60,23 @@ namespace Networking
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
             font = this.Content.Load<SpriteFont>("Arial");
-
+            fields = new Fields(spriteBatch, graphics);
             int[] a = new int[] { 1, 2, 3 };
             int[] b = new int[] { 4, 5, 6 };
             int[] c = new int[] { 7, 8, 9 };
             int[] d = new int[] { 10, 11, 12 };
             int[] e = new int[] { 13, 14, 15 };
             int[] f = new int[] { 16, 17, 18 };
-            node = new GraphNode(GraphicsDevice, spriteBatch, a);
-            node2 = new GraphNode(GraphicsDevice, spriteBatch, b);
-            node3 = new GraphNode(GraphicsDevice, spriteBatch, c);
-            node4 = new GraphNode(GraphicsDevice, spriteBatch, d);
-            node5 = new GraphNode(GraphicsDevice, spriteBatch, f);
+            node = new GraphNode(fields, a);
+            node2 = new GraphNode(fields, b);
+            node3 = new GraphNode(fields, c);
+            node4 = new GraphNode(fields, d);
+            node5 = new GraphNode(fields, f);
             nodeImage = this.Content.Load<Texture2D>("Node");
             node.addText(font, "1");
             node.loadImage(nodeImage, new Rectangle(100, 100, 50, 50));
 
-            node2.loadImage(nodeImage, new Rectangle(300, 200, 50, 50));
+            node2.loadImage(nodeImage, new Rectangle(640, 200, 50, 50));
             node2.addText(font, "2");
             node3.loadImage(nodeImage, new Rectangle(500, 101, 50, 50));
             node3.addText(font, "3");
@@ -87,8 +87,8 @@ namespace Networking
 
             
             // TODO: use this.Content to load your game content here
-            XNAFields myFields = new XNAFields(spriteBatch, graphics);
-            graphNetwork = new Network(myFields);
+            
+            graphNetwork = new Network(fields);
             graphNetwork.addNode(null, node, 200, 150);
             graphNetwork.addNode(node, node3, 200, 150);
             graphNetwork.addNode(node3, node5, 200, 150);
@@ -136,7 +136,16 @@ namespace Networking
            
             ap.Color = Color.BlueViolet;
            
-            
+            if(Keyboard.GetState().IsKeyDown(Keys.Tab))
+                for (int i = 0; i < 19; i++)
+                {
+                    graphNetwork.findNode(node5).outgoing.Enqueue(new Packet(123, node.IP, node4.IP, this.Content.Load<Texture2D>("Packet"))
+
+                    {
+                    });
+
+
+                } 
 
         
 
@@ -168,12 +177,13 @@ namespace Networking
         }
     }
 
-    public struct XNAFields
+    public struct Fields
     {
         public SpriteBatch spriteBatch;
         public GraphicsDevice graphics;
         public Viewport viewPort;
-        public XNAFields(SpriteBatch _spriteBatch, GraphicsDeviceManager graphicDeviceManager)
+        public enum Direction { NORTH, SOUTH, EAST, WEST };
+        public Fields(SpriteBatch _spriteBatch, GraphicsDeviceManager graphicDeviceManager)
         {
             this.spriteBatch = _spriteBatch;
             this.graphics = graphicDeviceManager.GraphicsDevice;
