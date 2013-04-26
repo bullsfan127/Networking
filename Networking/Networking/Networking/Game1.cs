@@ -111,7 +111,8 @@ namespace Networking
             ap = new Packet(123, node.IP, node4.IP, this.Content.Load<Texture2D>("Packet"));
              ap.packetParticle = this.Content.Load<Texture2D>("Packet");
              graphNetwork.findNode(node).outgoing.Enqueue(ap);
-
+             graphNetwork.createLabel(font, spriteBatch);
+             IsMouseVisible = true;
         }
 
         /// <summary>
@@ -149,8 +150,11 @@ namespace Networking
                 }
                 graphNetwork.findNode(node).outgoing.Enqueue(ap);
             }
-        
+    
 
+
+                        
+            
             // TODO: Add your update logic here
             graphNetwork.Update(gameTime);
             base.Update(gameTime);

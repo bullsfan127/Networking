@@ -114,6 +114,27 @@ namespace Networking
             this.num = num;
         }
 
+        public override string ToString()
+        {
+            string rec="";
+            string outgoing="";
+            foreach (Packet p in this.recieved)
+            {
+                rec += p.toString();
+            }
+
+            foreach (Packet p in this.outgoing)
+            {
+                outgoing+=p.toString();
+            }
+
+            string s = "Node: " + num + "\n" +
+                "IP: " + ip[0] + ip[1] + ip[2] + "\n" +
+                "Recieved: " +rec+"\n"+
+                "outgoing: "+ outgoing +"\n";
+
+            return s;
+        }
         #region XNA
 
         public void Update(GameTime gameTime)

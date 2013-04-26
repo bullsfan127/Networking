@@ -9,14 +9,16 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
+using GUI.Controls;
 namespace Networking
 {
    public class Network : IUpdateable, IDrawable
     {
        List<GraphNode> GraphList = new List<GraphNode>();
        Fields xnaStuff;
-
+       SpriteBatch spriteBatch;
+       GraphNode node;
+       Label label;
        public int Count
        {
            get { return GraphList.Count; }
@@ -27,6 +29,12 @@ namespace Networking
            xnaStuff = x;
        
        
+       }
+       public void createLabel(SpriteFont font, SpriteBatch batch)
+       {
+           label = new Label(font, "", new Vector2(10, 200),Color.White, 1);
+           spriteBatch = batch;
+           node = GraphList[0];
        }
        public void addEdge(GraphNode Neighbor1, GraphNode Neighbor2, int Distance, int Magnitude)
        {
@@ -71,9 +79,29 @@ namespace Networking
 
        public void Update(GameTime gameTime)
        {
+           bool update = false;
+           
            foreach (GraphNode a in GraphList)
-           {
-               a.Update(gameTime);
+           {   
+               if (node.Equals(a))
+                   {
+                       label.Text = a.ToString();
+
+                   }
+               if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+               {
+
+                   if (new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, 1, 1).Intersects(a.picturePosition))
+                   {
+                       label.Text = a.ToString();
+                       update = true;
+                       node = a;
+
+                   
+                   }
+               }
+            a.Update(gameTime);
+               
            }
        }
 
@@ -91,6 +119,7 @@ namespace Networking
 
                a.Draw(gameTime);
            }
+           label.Draw(gameTime,spriteBatch);
        }
 
        public int DrawOrder

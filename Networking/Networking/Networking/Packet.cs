@@ -148,7 +148,7 @@ namespace Networking
        public string toString()
        {
            string output;
-           output = "" + data + " Pos: " + position.ToString() + " " + OnLine.ToString();
+           output = "" + data + " Pos: " + position.ToString() + " " + OnLine.ToString()+ " ";
            return output;
        
        }

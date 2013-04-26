@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Arial.xnb</Output>
-      <Time>2013-04-04T18:22:53.1918195-05:00</Time>
+      <Output>C:\Users\Jonathan-Duo\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Arial.xnb</Output>
+      <Time>2013-04-04T18:46:20.4783325-05:00</Time>
     </Item>
     <Item>
       <Source>Node.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Node.xnb</Output>
-      <Time>2013-04-24T10:57:04.5834812-05:00</Time>
+      <Output>C:\Users\Jonathan-Duo\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Node.xnb</Output>
+      <Time>2013-04-25T16:44:07.4295067-05:00</Time>
     </Item>
     <Item>
       <Source>Packet.png</Source>
@@ -25,19 +25,19 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Packet.xnb</Output>
-      <Time>2013-04-24T11:23:00.2094579-05:00</Time>
+      <Output>C:\Users\Jonathan-Duo\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\Packet.xnb</Output>
+      <Time>2013-04-25T16:44:07.4315068-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
-      <TargetProfile>HiDef</TargetProfile>
+      <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\NetworkingContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\NetworkingContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Tim\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Jonathan-Duo\Documents\GitHub\Networking\Networking\Networking\NetworkingContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Jonathan-Duo\Documents\GitHub\Networking\Networking\Networking\Networking\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Jonathan-Duo\Documents\GitHub\Networking\Networking\Networking\NetworkingContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Jonathan-Duo\Documents\GitHub\Networking\Networking\Networking\Networking\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -66,7 +66,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2013-01-27T23:35:55.5695798-06:00</Value>
+        <Value>2013-01-22T15:53:29.9079383-06:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
